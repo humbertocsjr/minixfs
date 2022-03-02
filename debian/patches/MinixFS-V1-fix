@@ -1,0 +1,116 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ minixfs (0.5.1-1) UNRELEASED; urgency=low
+ .
+   * Initial release. Closes: #nnnn
+     <nnnn is the bug number of your ITP>
+Author: Humberto <>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2022-03-01
+
+--- minixfs-0.5.1.orig/iname.c
++++ minixfs-0.5.1/iname.c
+@@ -60,9 +60,8 @@ int ilookup_name(struct minix_fs_dat *fs
+   int i,bsz,j;
+   u8 blk[BLOCK_SIZE];
+   int fdirsize = VERSION_2(fs) ? 
+-		(INODE2(fs,inode))->i_size : (INODE(fs,inode))->i_size;
++      (INODE2(fs,inode))->i_size : (INODE(fs,inode))->i_size;
+   int dentsz = DIRSIZE(fs);
+-
+   for (i = 0; i < fdirsize; i += BLOCK_SIZE) {
+     bsz = read_inoblk(fs,inode,i / BLOCK_SIZE,blk);
+     for (j = 0; j < bsz ; j+= dentsz) {
+--- minixfs-0.5.1.orig/super.c
++++ minixfs-0.5.1/super.c
+@@ -68,14 +68,14 @@ struct minix_fs_dat *new_fs(const char *
+   int i;
+ 
+   if (magic != MINIX_SUPER_MAGIC && magic != MINIX_SUPER_MAGIC2 && 
+-	magic != MINIX2_SUPER_MAGIC && magic != MINIX2_SUPER_MAGIC2) {
++    magic != MINIX2_SUPER_MAGIC && magic != MINIX2_SUPER_MAGIC2) {
+     fatalmsg("invalid magic fs-type %x",magic);
+   }
+   fs->msb.s_magic = magic;
+   if (VERSION_2(fs)) {
+     fs->msb.s_zones = fsize;
+   } else {
+-    fs->msb.s_zones = fsize;
++    fs->msb.s_nzones = fsize;
+   }
+   fs->msb.s_state = MINIX_VALID_FS;
+   fs->msb.s_max_size = VERSION_2(fs) ? 0x7fffffff : (7+512+512*512) * 1024;
+@@ -85,10 +85,10 @@ struct minix_fs_dat *new_fs(const char *
+   /* Round up inode count */
+   if (VERSION_2(fs))
+     inodes = ((inodes + MINIX2_INODES_PER_BLOCK - 1) &
+-		~(MINIX2_INODES_PER_BLOCK - 1));
++        ~(MINIX2_INODES_PER_BLOCK - 1));
+   else
+     inodes = ((inodes + MINIX_INODES_PER_BLOCK - 1) & 
+-		~(MINIX_INODES_PER_BLOCK - 1));
++        ~(MINIX_INODES_PER_BLOCK - 1));
+   if (inodes > 65535) inodes = 65535;
+   INODES(fs) = inodes;
+   if (INODE_BLOCKS(fs) > fsize * 9 / 10 + 5)
+@@ -114,13 +114,13 @@ struct minix_fs_dat *new_fs(const char *
+   fs->ino.v1 = domalloc(INODE_BUFFER_SIZE(fs),0);
+   mark_inode(fs,MINIX_ROOT_INO);
+   set_inode(fs,MINIX_ROOT_INO,S_IFDIR | 0755, 2,
+-		opt_squash ? 0 : getuid(), opt_squash ? 0 : getgid(),
+-		2 * DIRSIZE(fs),NOW,NOW,NOW,0);
++        opt_squash ? 0 : getuid(), opt_squash ? 0 : getgid(),
++        2 * DIRSIZE(fs),NOW,NOW,NOW,0);
+   rootblkp = get_free_block(fs);
+   if (VERSION_2(fs)) {
+     INODE2(fs,MINIX_ROOT_INO)->i_zone[0] = rootblkp;
+   } else {
+-    INODE2(fs,MINIX_ROOT_INO)->i_zone[0] = rootblkp;
++    INODE(fs,MINIX_ROOT_INO)->i_zone[0] = rootblkp;
+   }
+   mark_zone(fs,rootblkp);
+     
+@@ -164,14 +164,13 @@ struct minix_fs_dat *open_fs(const char
+    * Read super block
+    */
+   goto_blk(fs->fp,MINIX_SUPER_BLOCK);
+-  dofread(goto_blk(fs->fp,MINIX_SUPER_BLOCK),
+-		&(fs->msb),sizeof(struct minix_super_block));
++  dofread(fs->fp,&(fs->msb),sizeof(struct minix_super_block));
+   /*
+    * Sanity checks ...
+    */
+   if (FSMAGIC(fs) != MINIX_SUPER_MAGIC && FSMAGIC(fs) != MINIX_SUPER_MAGIC2 && 
+ 	FSMAGIC(fs) != MINIX2_SUPER_MAGIC && FSMAGIC(fs) != MINIX2_SUPER_MAGIC2) {
+-    fatalmsg("invalid magic fs-type %x",FSMAGIC(fs));
++    fatalmsg("invalid magic fs-type %x in %s",FSMAGIC(fs), fn);
+   }
+   if (MINIX_VALID_FS != fs->msb.s_state) {
+     if (chk) die("Filesystem in an unknown state");
+--- minixfs-0.5.1.orig/writer.c
++++ minixfs-0.5.1/writer.c
+@@ -226,7 +226,7 @@ void cmd_add(struct minix_fs_dat *fs,int
+   struct stat sb;
+   int inode;
+ 
+-  if (argc != 3) fatalmsg("Usage: %s [input file] [image file]\n",argv[0]);
++  if (argc != 3) fatalmsg("Usage: %s [image] [input file] [image file]\n",argv[0]);
+   if (stat(argv[1],&sb)) die("stat(%s)",argv[1]);
+   if (!S_ISREG(sb.st_mode)) fatalmsg("%s: not a regular file\n",argv[1]);
+ 

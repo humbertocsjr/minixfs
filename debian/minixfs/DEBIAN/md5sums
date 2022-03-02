@@ -1,0 +1,5 @@
+5c81b8b91ebe02efc4751d7a8138298b  usr/bin/minixfs
+101d18fc11632ed561bc51e171950b57  usr/share/doc/minixfs/README.Debian
+2ac3fd097136dfcafa6b24e7ed6a346d  usr/share/doc/minixfs/changelog.Debian.gz
+36a946e9caab184d63c8e5d909a874c1  usr/share/doc/minixfs/copyright
+0a46a098888dba808a3d47d0e4a8b5fa  usr/share/man/man1/minixfs.1.gz

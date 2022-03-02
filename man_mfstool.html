@@ -1,0 +1,177 @@
+<!-- Creator     : groff version 1.22.4 -->
+<!-- CreationDate: Tue Mar  1 19:34:34 2022 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>mfstool</title>
+
+</head>
+<body>
+
+<h1 align="center">mfstool</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#ARGUMENTS">ARGUMENTS</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">mfstool -
+Minix-Filesytem image manipulation tool.</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>mfstool</b>
+[global options] subcmd {img-file} [sub options]</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>mfstool</b>
+is a tool to manipulate Minix filesystem images. Allows you
+to create arbitrary filesystem images from user space.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Normally it
+would be used for generating RAMDISK images for initrd.</p>
+
+<h2>ARGUMENTS
+<a name="ARGUMENTS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">{img-file}</p>
+
+<p style="margin-left:22%;">Name of the Minix file system
+image</p>
+
+<p style="margin-left:11%;">-k,--check (global option)</p>
+
+<p style="margin-left:22%;">Checks filesystem state and
+fails if a fsck is needed.</p>
+
+<p style="margin-left:11%;">-q,--squash-ids (global
+option)</p>
+
+<p style="margin-left:22%;">Squash ids so all files are
+owned by root.</p>
+
+<p style="margin-left:11%;">--help,--usage (global
+option)</p>
+
+<p style="margin-left:22%;">Prints the command usage</p>
+
+<p style="margin-left:11%;">--version (global option)</p>
+
+<p style="margin-left:22%;">Print version information</p>
+
+<p style="margin-left:11%;">--copyright (global option)</p>
+
+<p style="margin-left:22%;">Print copyright information</p>
+
+<p style="margin-left:11%;">mkfs (sub command)</p>
+
+<p style="margin-left:22%;">Create an empty filesystem</p>
+
+<p style="margin-left:11%;">-n namelen (mkfs, genfs
+option)</p>
+
+<p style="margin-left:22%;">specify the maximum length of
+filenames. Currently, only allowable values are 14 and
+30.</p>
+
+<p style="margin-left:11%;">-i inodecount (mkfs, genfs
+option)</p>
+
+<p style="margin-left:22%;">specify the number of inodes
+for the filesystem.</p>
+
+<p style="margin-left:11%;">-1 (mkfs, genfs option)</p>
+
+<p style="margin-left:22%;">Make a Minix version 1
+filesystem.</p>
+
+<p style="margin-left:11%;">-2|-v (mkfs, genfs option)</p>
+
+<p style="margin-left:22%;">Make a Minix version 2
+filesystem. This is the default.</p>
+
+<p style="margin-left:11%;">dir (sub command)</p>
+
+<p style="margin-left:22%;">Display the contents of a
+directory path</p>
+
+<p style="margin-left:11%;">stat (sub command)</p>
+
+<p style="margin-left:22%;">Display the inode details for a
+file</p>
+
+<p style="margin-left:11%;">mkdir (sub command)</p>
+
+<p style="margin-left:22%;">Create a sub-directory</p>
+
+<p style="margin-left:11%;">rmdir (sub command)</p>
+
+<p style="margin-left:22%;">Remove directories</p>
+
+<p style="margin-left:11%;">unlink (sub command)</p>
+
+<p style="margin-left:22%;">Remove files</p>
+
+<p style="margin-left:11%;">cat (sub command)</p>
+
+<p style="margin-left:22%;">Equivalent of the UNIX cat
+command.</p>
+
+<p style="margin-left:11%;">extract (sub command)</p>
+
+<p style="margin-left:22%;">Extracts a file to the
+specified file name</p>
+
+<p style="margin-left:11%;">readlink (sub command)</p>
+
+<p style="margin-left:22%;">Display a symbolic link</p>
+
+<p style="margin-left:11%;">symlink (sub command)</p>
+
+<p style="margin-left:22%;">Create a symbolic link</p>
+
+<p style="margin-left:11%;">hardlink (sub command)</p>
+
+<p style="margin-left:22%;">Create a hard link</p>
+
+
+<p style="margin-left:11%;">file|dir|socket|pipe|char|block
+(sub command)</p>
+
+<p style="margin-left:22%;">Create a node or set file
+attributes</p>
+
+<p style="margin-left:11%;">add (sub command)</p>
+
+<p style="margin-left:22%;">Copy a file from file-system to
+image.</p>
+<hr>
+</body>
+</html>

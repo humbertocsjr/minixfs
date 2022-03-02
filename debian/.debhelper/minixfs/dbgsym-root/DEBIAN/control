@@ -1,0 +1,13 @@
+Package: minixfs-dbgsym
+Package-Type: ddeb
+Source: minixfs
+Version: 0.5.1-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Humberto Costa <@humbertocsjr>
+Installed-Size: 65
+Depends: minixfs (= 0.5.1-1)
+Section: debug
+Priority: optional
+Description: debug symbols for minixfs
+Build-Ids: 8d9fecbe6bab7e5e7a21ba41b03ad136e33f67f5

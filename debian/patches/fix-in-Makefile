@@ -1,0 +1,54 @@
+Description: <short summary of the patch>
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ minixfs (0.5.1-1) UNRELEASED; urgency=low
+ .
+   * Initial release. Closes: #nnnn
+     <nnnn is the bug number of your ITP>
+Author: Humberto <>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: 2022-03-01
+
+--- minixfs-0.5.1.orig/Makefile.am
++++ minixfs-0.5.1/Makefile.am
+@@ -2,21 +2,21 @@ AUTOMAKE_OPTIONS = gnu
+ 
+ MAINTAINERCLEANFILES = INSTALL Makefile.in aclocal.m4 autoscan.log \
+ 			configure depcomp install-sh missing protos.h \
+-			config.h.in ChangeLog mfstool.1
++			config.h.in ChangeLog minixfs.1
+ man1_MANS = minixfs.1
+ EXTRA_DIST = $(man1_MANS)
+ 
+ bin_PROGRAMS = minixfs
+-mfstool_SOURCES = minixfs.c super.c utils.c inode.c genfs.c dir.c reader.c \
++minixfs_SOURCES = minixfs.c super.c utils.c inode.c genfs.c dir.c reader.c \
+ 		writer.c iname.c
+ noinst_HEADERS = minix_fs.h bitops.h protos.h
+ 
+ protos:
+-	cheaders $(mfstool_SOURCES) | sed 's/int \.\.\./.../' > protos.h
++	cheaders $(minixfs_SOURCES) | sed 's/int \.\.\./.../' > protos.h
+ 
+ clog:
+ 	echo "Empty change log"  > ChangeLog
+ 
+ mans:
+-	cdoc main.c
++	cdoc minixfs.c
+ 

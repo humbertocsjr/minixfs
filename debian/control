@@ -1,0 +1,13 @@
+Source: minixfs
+Section: unknown
+Priority: optional
+Maintainer: Humberto Costa <@humbertocsjr>
+Build-Depends: debhelper (>=11~), dh-autoreconf
+Standards-Version: 4.1.4
+Homepage: http://humbertocsjr.dev.br/posts/ferramenta-minixfs
+
+Package: minixfs
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Minix FileSystem Tool

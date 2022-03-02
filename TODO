@@ -1,0 +1,66 @@
+Pseudo-code
+
+o goto_blk
+o read_blk/write_blk
+o read_super/write_super
+o read_imap/write_imap
+o read_zmap/write_imap
+* read_dir_blk/write_dir_blk
+* read_file_blk/write_file_blk
+* extend_file
+* make_node
+* find_file
+* new_fs
+* open_fs
+
+#define minix_enc_dev(maj,min) (((maj)<<8)|(min))
+
+CHAR/BLK majr/minr modes in i_zone[0]
+
+
+mkfs -> # inodes = 1/3 blocks.  Or requested by user.
+Max inodes = 64K
+
+mkfs
+dir
+stat
+read
+
+
+chmod
+chgrp
+chown
+mknod
+mkpipe
+cp
+rm
+mkdir
+rmdir
+mv
+write
+genfs
+
+
+
+  {
+    int i,j;
+    for (i=0;i< ZMAPS(fs)*BLOCK_SIZE;i+= 16) {
+      for (j=0;j<16 && j < ZMAPS(fs)*BLOCK_SIZE;j++) {
+        printf(" %02x",fs->zone_bmap[i+j]);
+      }
+      printf("\n");
+    }
+  }
+
+  for (i = 0; 
+
+  parse_mkfs(argc,argv,&magic,&req_blks,&req_inos);
+  {
+    int i;
+    for (i=optind;i<argc;i++) {
+      printf("%3d) %s\n",i,argv[i]);
+    }
+  }
+  fs = new_fs(filename,magic,req_blks,req_inos);
+
+

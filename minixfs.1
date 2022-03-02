@@ -1,0 +1,117 @@
+.\" "
+.\" Automatically created with cdoc "
+.\" "
+.TH "minixfs" "1" "18.02.2005" "0.0" "minixfs"
+.SH NAME
+minixfs - Minix-Filesytem image manipulation tool.
+.SH SYNOPSIS
+.TP
+\fBminixfs\fR [global options] subcmd {img-file} [sub options]
+
+.SH DESCRIPTION
+\fBminixfs\fR is a tool to manipulate Minix filesystem
+images. Allows you to create arbitrary filesystem images
+from user space.
+
+.LP
+Normally it would be used for generating RAMDISK images
+for initrd.
+.SH ARGUMENTS
+.TP
+{img-file}
+Name of the Minix file system image
+
+.TP
+-k,--check (global option)
+Checks filesystem state and fails if a fsck is needed.
+
+.TP
+-q,--squash-ids (global option)
+Squash ids so all files are owned by root.
+
+.TP
+--help,--usage (global option)
+Prints the command usage
+
+.TP
+--version (global option)
+Print version information
+
+.TP
+--copyright (global option)
+Print copyright information
+
+.TP
+mkfs (sub command)
+Create an empty filesystem
+
+.TP
+-n namelen (mkfs, genfs option)
+Specify the maximum length of filenames. Currently,
+only allowable values are 14 and 30.
+
+.TP
+-i inodecount (mkfs, genfs option)
+Specify the number of inodes for the filesystem.
+
+.TP
+-1 (mkfs, genfs option)
+Make a Minix version 1 filesystem.
+
+.TP
+-2|-v (mkfs, genfs option)
+Make a Minix version 2 filesystem. This is the default.
+
+.TP
+-s size (mkfs, genfs option)
+Specify the size of filesystem.
+.TP
+dir (sub command)
+Display the contents of a directory path
+
+.TP
+stat (sub command)
+Display the inode details for a file
+
+.TP
+mkdir (sub command)
+Create a sub-directory
+
+.TP
+rmdir (sub command)
+Remove directories
+
+.TP
+unlink (sub command)
+Remove files
+
+.TP
+cat (sub command)
+Equivalent of the UNIX cat command.
+
+.TP
+extract (sub command)
+Extracts a file to the specified file name
+
+.TP
+readlink (sub command)
+Display a symbolic link
+
+.TP
+symlink (sub command)
+Create a symbolic link
+
+.TP
+hardlink (sub command)
+Create a hard link
+
+.TP
+file|dir|socket|pipe|char|block (sub command)
+Create a node or set file attributes
+
+.TP
+add (sub command)
+Copy a file from file-system to image.
+
+
+.fi

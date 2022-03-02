@@ -1,0 +1,11 @@
+Package: minixfs
+Version: 0.5.1-1
+Architecture: amd64
+Maintainer: Humberto Costa <@humbertocsjr>
+Installed-Size: 84
+Depends: libc6 (>= 2.4)
+Section: unknown
+Priority: optional
+Multi-Arch: foreign
+Homepage: http://humbertocsjr.dev.br/posts/ferramenta-minixfs
+Description: Minix FileSystem Tool

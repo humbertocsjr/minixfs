@@ -1,0 +1,10 @@
+dir.o
+genfs.o
+iname.o
+inode.o
+minixfs
+minixfs.o
+reader.o
+super.o
+utils.o
+writer.o

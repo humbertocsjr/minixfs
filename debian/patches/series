@@ -1,0 +1,8 @@
+# You must remove unused comment lines for the released package.
+MinixFS-V1-fix
+make-fix
+Autoconf-fix
+fix-in-Makefile
+add-instructions-to-build-a-.deb
+update-description
+windows-version-update
