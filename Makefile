@@ -221,22 +221,22 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/humberto/Documentos/minixfs-0.5.1/missing aclocal-1.16
+ACLOCAL = ${SHELL} /Users/humberto/Downloads/minixfs-main/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/humberto/Documentos/minixfs-0.5.1/missing autoconf
-AUTOHEADER = ${SHELL} /home/humberto/Documentos/minixfs-0.5.1/missing autoheader
-AUTOMAKE = ${SHELL} /home/humberto/Documentos/minixfs-0.5.1/missing automake-1.16
-AWK = mawk
+AUTOCONF = ${SHELL} /Users/humberto/Downloads/minixfs-main/missing autoconf
+AUTOHEADER = ${SHELL} /Users/humberto/Downloads/minixfs-main/missing autoheader
+AUTOMAKE = ${SHELL} /Users/humberto/Downloads/minixfs-main/missing automake-1.16
+AWK = awk
 CC = gcc
-CCDEPMODE = depmode=none
-CFLAGS = -g -O2 -fdebug-prefix-map=/home/humberto/Documentos/minixfs-0.5.1=. -fstack-protector-strong -Wformat -Werror=format-security
-CPPFLAGS = -Wdate-time -D_FORTIFY_SOURCE=2
+CCDEPMODE = depmode=gcc3
+CFLAGS = -g -O2
+CPPFLAGS = 
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-ECHO_C = 
-ECHO_N = -n
+ECHO_C = \c
+ECHO_N = 
 ECHO_T = 
 EXEEXT = 
 INSTALL = /usr/bin/install -c
@@ -244,12 +244,12 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LDFLAGS = -Wl,-Bsymbolic-functions -Wl,-z,relro
+LDFLAGS = 
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/humberto/Documentos/minixfs-0.5.1/missing makeinfo
-MKDIR_P = /usr/bin/mkdir -p
+MAKEINFO = ${SHELL} /Users/humberto/Downloads/minixfs-main/missing makeinfo
+MKDIR_P = ./install-sh -c -d
 OBJEXT = o
 PACKAGE = minixfs
 PACKAGE_BUGREPORT = alejandro_liu@hotmail.com
@@ -260,13 +260,13 @@ PACKAGE_URL =
 PACKAGE_VERSION = 0.5.1
 PATH_SEPARATOR = :
 SET_MAKE = 
-SHELL = /bin/bash
+SHELL = /bin/sh
 STRIP = 
 VERSION = 0.5.1
-abs_builddir = /home/humberto/Documentos/minixfs-0.5.1
-abs_srcdir = /home/humberto/Documentos/minixfs-0.5.1
-abs_top_builddir = /home/humberto/Documentos/minixfs-0.5.1
-abs_top_srcdir = /home/humberto/Documentos/minixfs-0.5.1
+abs_builddir = /Users/humberto/Downloads/minixfs-main
+abs_srcdir = /Users/humberto/Downloads/minixfs-main
+abs_top_builddir = /Users/humberto/Downloads/minixfs-main
+abs_top_srcdir = /Users/humberto/Downloads/minixfs-main
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -274,7 +274,7 @@ am__quote =
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build_alias = x86_64-linux-gnu
+build_alias = 
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
@@ -284,24 +284,24 @@ exec_prefix = ${prefix}
 host_alias = 
 htmldir = ${docdir}
 includedir = ${prefix}/include
-infodir = ${prefix}/share/info
-install_sh = ${SHELL} /home/humberto/Documentos/minixfs-0.5.1/install-sh
-libdir = ${prefix}/lib/x86_64-linux-gnu
-libexecdir = ${prefix}/lib/x86_64-linux-gnu
+infodir = ${datarootdir}/info
+install_sh = ${SHELL} /Users/humberto/Downloads/minixfs-main/install-sh
+libdir = ${exec_prefix}/lib
+libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
-localstatedir = /var
-mandir = ${prefix}/share/man
+localstatedir = ${prefix}/var
+mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr
+prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
-runstatedir = /run
+runstatedir = ${localstatedir}/run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
-sysconfdir = /etc
+sysconfdir = ${prefix}/etc
 target_alias = 
 top_build_prefix = 
 top_builddir = .
@@ -423,15 +423,15 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-#include ./$(DEPDIR)/dir.Po # am--include-marker
-#include ./$(DEPDIR)/genfs.Po # am--include-marker
-#include ./$(DEPDIR)/iname.Po # am--include-marker
-#include ./$(DEPDIR)/inode.Po # am--include-marker
-#include ./$(DEPDIR)/minixfs.Po # am--include-marker
-#include ./$(DEPDIR)/reader.Po # am--include-marker
-#include ./$(DEPDIR)/super.Po # am--include-marker
-#include ./$(DEPDIR)/utils.Po # am--include-marker
-#include ./$(DEPDIR)/writer.Po # am--include-marker
+include ./$(DEPDIR)/dir.Po # am--include-marker
+include ./$(DEPDIR)/genfs.Po # am--include-marker
+include ./$(DEPDIR)/iname.Po # am--include-marker
+include ./$(DEPDIR)/inode.Po # am--include-marker
+include ./$(DEPDIR)/minixfs.Po # am--include-marker
+include ./$(DEPDIR)/reader.Po # am--include-marker
+include ./$(DEPDIR)/super.Po # am--include-marker
+include ./$(DEPDIR)/utils.Po # am--include-marker
+include ./$(DEPDIR)/writer.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -440,18 +440,18 @@ $(am__depfiles_remade):
 am--depfiles: $(am__depfiles_remade)
 
 .c.o:
-#	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-#	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-#	$(AM_V_CC)source='$<' object='$@' libtool=no 
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) 
-	$(AM_V_CC)$(COMPILE) -c -o $@ $<
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+#	$(AM_V_CC)source='$<' object='$@' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(COMPILE) -c -o $@ $<
 
 .c.obj:
-#	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-#	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
-#	$(AM_V_CC)source='$<' object='$@' libtool=no 
-#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) 
-	$(AM_V_CC)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+#	$(AM_V_CC)source='$<' object='$@' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 install-man1: $(man1_MANS)
 	@$(NORMAL_INSTALL)
 	@list1='$(man1_MANS)'; \

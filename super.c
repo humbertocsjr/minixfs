@@ -82,6 +82,11 @@ struct minix_fs_dat *new_fs(const char *fn,int magic,unsigned long fsize,int ino
 
   /* Manage inodes */
   if (!inodes) inodes = fsize / 3; /* Default number inodes to 1/3 blocks */
+    if (fsize == 1440) inodes = 512;
+    if (fsize == 1200) inodes = 384;
+    if (fsize == 360) inodes = 256;
+    if (fsize == 360) inodes = 128;
+    
   /* Round up inode count */
   if (VERSION_2(fs))
     inodes = ((inodes + MINIX2_INODES_PER_BLOCK - 1) &

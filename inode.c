@@ -164,6 +164,7 @@ void ino2_setzone(struct minix_fs_dat *fs,struct minix2_inode *ino,
  */
 void ino_setzone(struct minix_fs_dat *fs,struct minix_inode *ino,
 			int blk,int zone) {
+    printf("[ DEF %d : %d ]", blk, zone);
   /* Direct block */
   if (blk < 7) {
     if (ino->i_zone[blk] && ino->i_zone[blk] != zone)
@@ -296,6 +297,7 @@ void ino2_freezone(struct minix_fs_dat *fs,struct minix2_inode *ino,u32 blk) {
  */
 void ino_freezone(struct minix_fs_dat *fs,struct minix_inode *ino,int blk) {
   int i;
+    printf("[ LIBERA %d ]", blk);
   /* Direct block */
   if (blk < 7) {
     if (ino->i_zone[blk]) unmark_zone(fs,ino->i_zone[blk]);
@@ -420,7 +422,7 @@ void write_inoblk(struct minix_fs_dat *fs,int inode,u32 blk,u8 *buf) {
     }
     dofwrite(goto_blk(fs->fp,zone),buf,BLOCK_SIZE);
   } else {
-    int zone;
+    u16 zone;
     struct minix_inode *ino = INODE(fs,inode);
 
     zone = ino_zone(fs,ino,blk);
