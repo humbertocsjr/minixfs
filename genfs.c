@@ -41,16 +41,17 @@
  * -2|v -> version2
  * -i nodecount
  * -s nblocks
+ * -k
  */
-void parse_mkfs(int argc,char **argv,int *magic_p,int *nblks_p,int *inodes_p) {
+void parse_mkfs(int argc,char **argv,int *magic_p,int *nblks_p,int *inodes_p,int *keepdata_p) {
   int c;
   int namelen = 30;
   int version = 2;
   *nblks_p = -1;
   *inodes_p = 0;
-    
+  *keepdata_p = 0;
   while (1) {
-    c = getopt(argc,argv,"12vi:n:s:");
+    c = getopt(argc,argv,"12vi:k:n:s:");
     if (c == -1) break;
     switch (c) {
     case '1':
@@ -69,6 +70,9 @@ void parse_mkfs(int argc,char **argv,int *magic_p,int *nblks_p,int *inodes_p) {
       break;
     case 's':
       *nblks_p = atoi(optarg);
+      break;
+    case 'k':
+      *keepdata_p = 1;
       break;
     default:
       usage(argv[0]);
@@ -92,11 +96,12 @@ void cmd_mkfs(int argc,char **argv) {
   int req_inos;
   int req_blks;
   int magic;
+  int keepdata;
   char *filename = argv[0];
   struct minix_fs_dat *fs;
 
-  parse_mkfs(argc,argv,&magic,&req_blks,&req_inos);
-  fs = new_fs(filename,magic,req_blks,req_inos);
+  parse_mkfs(argc,argv,&magic,&req_blks,&req_inos,&keepdata);
+  fs = new_fs(filename,magic,req_blks,req_inos,keepdata);
   close_fs(fs);
 }
 
@@ -109,11 +114,12 @@ void cmd_genfs(int argc,char **argv) {
   int req_inos;
   int req_blks;
   int magic;
+  int keepdata;
   char *filename = argv[0];
   struct minix_fs_dat *fs;
 
-  parse_mkfs(argc,argv,&magic,&req_blks,&req_inos);
-  fs = new_fs(filename,magic,req_blks,req_inos);
+  parse_mkfs(argc,argv,&magic,&req_blks,&req_inos,&keepdata);
+  fs = new_fs(filename,magic,req_blks,req_inos,keepdata);
   {
     int i;
     for (i=optind;i<argc;i++) {

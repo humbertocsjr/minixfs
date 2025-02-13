@@ -61,7 +61,7 @@ unsigned long get_free_bit(u8 *bmap,int bsize) {
  * @return pointer to a minix_fs_dat structure
  * @effect the file will be created or truncated.
  */ 
-struct minix_fs_dat *new_fs(const char *fn,int magic,unsigned long fsize,int inodes) {
+struct minix_fs_dat *new_fs(const char *fn,int magic,unsigned long fsize,int inodes,int keepdata) {
   struct minix_fs_dat *fs = domalloc(sizeof(struct minix_fs_dat),0);
   u32 rootblkp;
   char root_block[BLOCK_SIZE];
@@ -84,7 +84,7 @@ struct minix_fs_dat *new_fs(const char *fn,int magic,unsigned long fsize,int ino
   if (!inodes) inodes = fsize / 3; /* Default number inodes to 1/3 blocks */
     if (fsize == 1440) inodes = 512;
     if (fsize == 1200) inodes = 384;
-    if (fsize == 360) inodes = 256;
+    if (fsize == 720) inodes = 256;
     if (fsize == 360) inodes = 128;
     
   /* Round up inode count */
@@ -132,7 +132,7 @@ struct minix_fs_dat *new_fs(const char *fn,int magic,unsigned long fsize,int ino
   /*
    * Initialise file
    */
-  fs->fp = fopen(fn,"w+b");
+  fs->fp = fopen(fn,keepdata ? "r+b" : "w+b");
   if (!fs->fp) die(fn);
   if (fseek(fs->fp,fsize * BLOCK_SIZE-1,SEEK_SET)) die("fseek");
   putc(0,fs->fp);

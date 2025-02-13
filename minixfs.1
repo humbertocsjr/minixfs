@@ -22,7 +22,7 @@ for initrd.
 Name of the Minix file system image
 
 .TP
--k,--check (global option)
+-f,--check (global option)
 Checks filesystem state and fails if a fsck is needed.
 
 .TP
@@ -63,8 +63,13 @@ Make a Minix version 1 filesystem.
 Make a Minix version 2 filesystem. This is the default.
 
 .TP
+-k (genfs option)
+Keep original raw data on disk (eg.: bootloader)
+
+.TP
 -s size (mkfs, genfs option)
-Specify the size of filesystem.
+Specify the size of filesystem (kilobytes).
+
 .TP
 dir (sub command)
 Display the contents of a directory path

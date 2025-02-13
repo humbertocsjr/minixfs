@@ -128,7 +128,7 @@ void parse_opts(int *argc_p,char ***argv_p) {
   int argc = *argc_p;
   char **argv = *argv_p;
   static struct option main_options[] = {
-    { "check", no_argument, 0, 'k' },
+    { "check", no_argument, 0, 'f' },
     { "squash-ids",no_argument, 0, 'q'},
     { "help", no_argument, 0, 1000 },
     { "usage", no_argument, 0, 1000 },
@@ -145,7 +145,7 @@ void parse_opts(int *argc_p,char ***argv_p) {
     case 'q':
       opt_squash = 1;
       break;
-    case 'k':
+    case 'f':
       opt_fsbad_fatal = 1;
       break;
     case 1000:
