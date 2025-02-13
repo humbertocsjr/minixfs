@@ -51,7 +51,7 @@ void parse_mkfs(int argc,char **argv,int *magic_p,int *nblks_p,int *inodes_p,int
   *inodes_p = 0;
   *keepdata_p = 0;
   while (1) {
-    c = getopt(argc,argv,"12vi:k:n:s:");
+    c = getopt(argc,argv,"12vki:n:s:");
     if (c == -1) break;
     switch (c) {
     case '1':

@@ -20,7 +20,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.5.1"
+#define PACKAGE_VERSION "0.5.2"
 
 /* Version number of package */
-#define VERSION "0.5.1"
+#define VERSION "0.5.2"
