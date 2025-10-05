@@ -24,7 +24,7 @@
  * @call	[global options] subcmd {img-file} [sub options]
  * @option	{img-file}
  *		Name of the Minix file system image
- * @option	-k,--check (global option)
+ * @option	-c,--check (global option)
  *		Checks filesystem state and fails if a fsck is needed.
  * @option	-q,--squash-ids (global option)
  *		Squash ids so all files are owned by root.
@@ -73,7 +73,7 @@
  *		Copy a file from file-system to image.
  *
  * @doc
- *		<B>mfstool</B> is a tool to manipulate Minix filesystem
+ *		<B>minixfs</B> is a tool to manipulate Minix filesystem
  *		images.  Allows you to create arbitrary filesystem images
  *		from user space.
  *		<br>
@@ -155,22 +155,23 @@ void parse_opts(int *argc_p,char ***argv_p) {
       exit(0);
     case 'C':
       pver();
-      printf("\n\
-Copyright (C) 2005 - Alejandro Liu Ly <alejandro_liu@hotmail.com>\n\n\
-This program is free software; you can redistribute it and/or modify\n\
-it under the terms of the GNU General Public License as published by\n\
-the Free Software Foundation; either version 2 of the License, or\n\
-(at your option) any later version.\n\
-\n\
-This program is distributed in the hope that it will be useful,\n\
-but WITHOUT ANY WARRANTY; without even the implied warranty of\n\
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n\
-GNU General Public License for more details.\n\
-\n\
-You should have received a copy of the GNU General Public License\n\
-along with this program; if not, write to the Free Software\n\
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA\n\
-\n");
+      printf("\n"
+"Copyright (C) 2005 - Alejandro Liu Ly <alejandro_liu@hotmail.com>\n"
+"Copyright (C) 2023-2025 - Humberto Costa dos Santos Junior <github.com/humbertocsjr>\n\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 2 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to the Free Software\n"
+"Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA\n"
+"\n");
       exit(0);
     }
   }

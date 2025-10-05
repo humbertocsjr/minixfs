@@ -61,11 +61,12 @@ unsigned long get_free_bit(u8 *bmap,int bsize) {
  * @return pointer to a minix_fs_dat structure
  * @effect the file will be created or truncated.
  */ 
-struct minix_fs_dat *new_fs(const char *fn,int magic,unsigned long fsize,int inodes,int keepdata) {
+struct minix_fs_dat *new_fs(const char *fn,int magic,unsigned long fsize,int inodes,int keepdata,char *bootldr) {
   struct minix_fs_dat *fs = domalloc(sizeof(struct minix_fs_dat),0);
   u32 rootblkp;
   char root_block[BLOCK_SIZE];
   int i;
+  FILE *bootfile;
 
   if (magic != MINIX_SUPER_MAGIC && magic != MINIX_SUPER_MAGIC2 && 
     magic != MINIX2_SUPER_MAGIC && magic != MINIX2_SUPER_MAGIC2) {
@@ -134,6 +135,16 @@ struct minix_fs_dat *new_fs(const char *fn,int magic,unsigned long fsize,int ino
    */
   fs->fp = fopen(fn,keepdata ? "r+b" : "w+b");
   if (!fs->fp) die(fn);
+  if(bootldr)
+  {
+    bootfile = fopen(bootldr, "rb");
+    if(!bootfile) die(bootldr);
+    memset(root_block,0,sizeof(root_block));
+    fread(root_block, 1, sizeof(root_block), bootfile);
+    fseek(fs->fp, 0, SEEK_SET);
+    fwrite(root_block, 1, sizeof(root_block), fs->fp);
+    fclose(bootfile);
+  }
   if (fseek(fs->fp,fsize * BLOCK_SIZE-1,SEEK_SET)) die("fseek");
   putc(0,fs->fp);
   fflush(fs->fp);
