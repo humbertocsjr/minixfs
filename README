@@ -10,3 +10,13 @@ root priviledges and will allow regular users create device nodes on
 the file system.
 
 Use debuild to compile a .deb file
+
+Build and install on POSIX Compliant system:
+
+```sh
+chmod +x configure
+./configure
+make clean
+make 
+sudo make install
+```
