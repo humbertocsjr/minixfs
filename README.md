@@ -1,5 +1,4 @@
-                          MFSTOOL
-                   Minix FileSystem Tool
+# Minix FileSystem Tool
 
 This utility is used to manipulate Minix filesystem images in user-space.
 It can be used to extract files and generate full images for using in
