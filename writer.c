@@ -163,16 +163,16 @@ void cmd_mknode(struct minix_fs_dat *fs,int type,int argc,char **argv) {
   int major = 0, minor = 0, count = 0,inc = 1;
   if (type == S_IFBLK || type == S_IFCHR ? 
 	argc < 7 || argc > 9 : argc < 3 || argc > 5)
-    fatalmsg("Usage: %s path mode [uid gid [major minor [count [inc]]]]\n",
-		argv[0]);
+    fatalmsg("Usage: %s path mode [uid gid [major minor [count [inc]]]] %d\n",
+		argv[0], argc);
   
   mode = (strtoul(argv[2],NULL,8) & 07777) | type;
-  if (argc < 4) uid = atoi(argv[3]);
-  if (argc < 5) gid = atoi(argv[4]);
-  if (argc < 6) major = atoi(argv[5]);
-  if (argc < 7) minor = atoi(argv[6]);
-  if (argc < 8) count = atoi(argv[7]);
-  if (argc < 9) inc = atoi(argv[8]);
+  if (argc >= 4) uid = atoi(argv[3]);
+  if (argc >= 5) gid = atoi(argv[4]);
+  if (argc >= 6) major = atoi(argv[5]);
+  if (argc >= 7) minor = atoi(argv[6]);
+  if (argc >= 8) count = atoi(argv[7]);
+  if (argc >= 9) inc = atoi(argv[8]);
   if (inc < 1) fatalmsg("Invalid increment value: %d\n",inc);
 
   if (count && (type == S_IFBLK || type == S_IFCHR)) {
